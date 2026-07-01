@@ -149,7 +149,9 @@ async function initEditor() {
   await nextTick()
   if (!editorRef.value) return
 
-  const toolbarConfig: Partial<IToolbarConfig> = {}
+  const toolbarConfig: Partial<IToolbarConfig> = {
+    excludeKeys: ['fullScreen', 'insertVideo'],
+  }
 
   const editorConfig: Partial<IEditorConfig> = {
     placeholder: '请输入内容...',
@@ -182,7 +184,19 @@ async function initEditor() {
       }
       return true
     }) as unknown as (editor: IDomEditor, e: ClipboardEvent) => boolean,
-    MENU_CONF: {},
+    MENU_CONF: {
+      uploadImage: {
+        async customUpload(file: File, insertFn: (url: string) => void) {
+          const dataUrl = await new Promise<string>((resolve, reject) => {
+            const reader = new FileReader()
+            reader.onload = () => resolve(reader.result as string)
+            reader.onerror = () => reject(reader.error)
+            reader.readAsDataURL(file)
+          })
+          insertFn(dataUrl)
+        },
+      },
+    },
   }
 
   try {
