@@ -1,0 +1,54 @@
+{
+  "name": "mynote-server",
+  "version": "1.0.0",
+  "description": "MyNote 笔记服务端 - Express + SQLite",
+  "main": "dist/app.js",
+  "bin": "dist/app.js",
+  "scripts": {
+    "dev": "tsx watch src/app.ts",
+    "build": "tsc",
+    "build:copy-wasm": "node -e \"require('fs').copyFileSync('node_modules/sql.js/dist/sql-wasm.wasm', 'dist/sql-wasm.wasm')\"",
+    "build:pkg": "npm run build && npm run build:copy-wasm && npx pkg . --target node18-linux-x64 --output mynote-server --compress Brotli",
+    "build:pkg:win": "npm run build && npm run build:copy-wasm && npx pkg . --target node18-win-x64 --output mynote-server.exe --compress Brotli",
+    "build:pkg:mac": "npm run build && npm run build:copy-wasm && npx pkg . --target node18-macos-x64 --output mynote-server-mac --compress Brotli",
+    "start": "node dist/app.js",
+    "test": "jest --passWithNoTests"
+  },
+  "pkg": {
+    "scripts": [
+      "dist/**/*.js"
+    ],
+    "assets": [
+      "dist/sql-wasm.wasm"
+    ],
+    "targets": [
+      "node18-linux-x64"
+    ]
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "sql.js": "^1.10.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/morgan": "^1.9.9",
+    "@types/multer": "^1.4.11",
+    "@types/node": "^20.10.0",
+    "@types/sql.js": "^1.4.11",
+    "@types/uuid": "^9.0.7",
+    "@yao-pkg/pkg": "^5.12.0",
+    "tsx": "^4.6.0",
+    "typescript": "^5.3.0"
+  }
+}

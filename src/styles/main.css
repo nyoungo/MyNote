@@ -1,0 +1,534 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.anticon {
+  vertical-align: 0.075em;
+}
+.ant-tree .ant-tree-switcher {
+  width: 8px;
+  margin-left: 5px;
+  line-height: 30px;
+  text-align: right;
+  z-index: 999;
+}
+/*.ant-tree .ant-tree-switcher-noop {*/
+/*  border-left: 1px solid #00000055;*/
+/*  width: 2px;*/
+/*}*/
+.ant-tree .ant-tree-node-content-wrapper {
+  line-height: 30px;
+}
+.ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle, .ant-tree .ant-tree-checkbox+span .ant-tree-iconEle {
+  line-height: 30px;
+}
+.ant-tree {
+  background: none;
+}
+/* ============================================================
+   MyNote 设计系统 — 有道云笔记风格 · 多主题色支持
+   ============================================================
+   设计语言：扁平、干净、紧凑、平滑
+   默认主题色：支付宝蓝 #1677ff
+   可在设置中切换为：阿里巴巴橙 #FF6A00 等
+   ============================================================ */
+
+:root {
+  /* ---- 主色系统（默认：支付宝蓝） ---- */
+  --primary-color: #1677ff;
+  --primary-hover: #4096ff;
+  --primary-active: #0958d9;
+  --primary-bg: #E6F4FF;
+  --primary-border: #91CAFF;
+  --primary-light: #BAE0FF;
+
+  /* ---- 功能色 ---- */
+  --success-color: #22C55E;
+  --success-bg: #F0FDF4;
+  --success-border: #BBF7D0;
+  --warning-color: #F59E0B;
+  --warning-bg: #FFFBEB;
+  --warning-border: #FDE68A;
+  --danger-color: #EF4444;
+  --danger-bg: #FEF2F2;
+  --danger-border: #FECACA;
+  --info-color: #1677ff;
+
+  /* ---- 中性色 ---- */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8F9FA;
+  --bg-tertiary: #F0F1F2;
+  --bg-sidebar: #FAFBFC;
+  --bg-hover: rgba(0, 0, 0, 0.04);
+  --bg-active: #E6F4FF;
+  --bg-mask: rgba(0, 0, 0, 0.35);
+
+  --text-primary: #1A1A1A;
+  --text-secondary: #595959;
+  --text-tertiary: #8C8C8C;
+  --text-quaternary: #BFBFBF;
+  --text-inverse: #FFFFFF;
+
+  --border-color: #E5E6E8;
+  --border-secondary: #F0F0F0;
+
+  /* ---- 间距体系（4px 基准网格，紧凑） ---- */
+  --spacing-xxs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 6px;
+  --spacing-md: 10px;
+  --spacing-lg: 14px;
+  --spacing-xl: 18px;
+  --spacing-xxl: 22px;
+  --spacing-xxxl: 28px;
+  --spacing-huge: 36px;
+
+  /* ---- 阴影系统 ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-drawer: -4px 0 16px rgba(0, 0, 0, 0.06);
+  --shadow-modal: 0 8px 30px rgba(0, 0, 0, 0.10);
+
+  /* ---- 圆角系统 ---- */
+  --radius-xs: 3px;
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-round: 9999px;
+
+  /* ---- 字体系统 ---- */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', 'PingFang SC', 'Microsoft YaHei', 'Microsoft YaHei UI', 'HarmonyOS Sans', sans-serif;
+  --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-md: 13px;
+  --font-size-base: 13.5px;
+  --font-size-lg: 15px;
+  --font-size-xl: 17px;
+  --font-size-xxl: 19px;
+  --font-size-title: 22px;
+
+  /* ---- 动画曲线 ---- */
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --duration-fast: 0.12s;
+  --duration-normal: 0.18s;
+  --duration-slow: 0.25s;
+
+  /* ---- 侧边栏 ---- */
+  --sidebar-width: 60px;
+
+  /* ---- z-index 分层 ---- */
+  --z-sidebar: 100;
+  --z-header: 200;
+  --z-modal: 1000;
+  --z-context-menu: 1060;
+}
+
+/* ============================================================
+   主题：支付宝蓝（默认）
+   html.theme-blue 或无 theme 类时均为此主题
+   ============================================================ */
+html.theme-blue,
+html:not([class*="theme-"]) {
+  --primary-color: #1677ff;
+  --primary-hover: #4096ff;
+  --primary-active: #0958d9;
+  --primary-bg: #E6F4FF;
+  --primary-border: #91CAFF;
+  --primary-light: #BAE0FF;
+  --bg-active: #E6F4FF;
+  --info-color: #1677ff;
+}
+
+/* ============================================================
+   主题：阿里巴巴橙
+   ============================================================ */
+html.theme-orange {
+  --primary-color: #FF6A00;
+  --primary-hover: #FF8124;
+  --primary-active: #E05E00;
+  --primary-bg: #FFF3E6;
+  --primary-border: #FFD6AD;
+  --primary-light: #FFEDD5;
+  --bg-active: #FFF3E6;
+  --info-color: #FF6A00;
+}
+
+/* ============================================================
+   主题：极客蓝
+   ============================================================ */
+html.theme-geekblue {
+  --primary-color: #2F54EB;
+  --primary-hover: #597EF7;
+  --primary-active: #1D39C4;
+  --primary-bg: #F0F5FF;
+  --primary-border: #D6E4FF;
+  --primary-light: #ADC6FF;
+  --bg-active: #F0F5FF;
+  --info-color: #2F54EB;
+}
+
+/* ============================================================
+   主题：微信绿
+   ============================================================ */
+html.theme-green {
+  --primary-color: #07C160;
+  --primary-hover: #2DD47A;
+  --primary-active: #06AD56;
+  --primary-bg: #E8F8EE;
+  --primary-border: #B2E6C2;
+  --primary-light: #D4F0DC;
+  --bg-active: #E8F8EE;
+  --info-color: #07C160;
+}
+
+/* ============================================================
+   主题：火山红
+   ============================================================ */
+html.theme-red {
+  --primary-color: #F5222D;
+  --primary-hover: #FF4D4F;
+  --primary-active: #CF1322;
+  --primary-bg: #FFF1F0;
+  --primary-border: #FFCCC7;
+  --primary-light: #FFD8D5;
+  --bg-active: #FFF1F0;
+  --info-color: #F5222D;
+}
+
+/* ============================================================
+   主题：炫酷紫
+   ============================================================ */
+html.theme-purple {
+  --primary-color: #722ED1;
+  --primary-hover: #9254DE;
+  --primary-active: #531DAB;
+  --primary-bg: #F9F0FF;
+  --primary-border: #EFDBFF;
+  --primary-light: #E3C5FF;
+  --bg-active: #F9F0FF;
+  --info-color: #722ED1;
+}
+
+/* ============================================================
+   全局重置与基础样式
+   ============================================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.5715;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+}
+
+/* ============================================================
+   Ant Design 组件全局覆盖（主题色驱动）
+   注意：Ant Design Vue 4.x 使用 CSS-in-JS，hover 选择器含
+   :not(:disabled)，需要相同特异性才能覆盖。
+   ============================================================ */
+
+/* ---- Button ---- */
+.ant-btn {
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-md);
+  transition: all var(--duration-fast);
+}
+
+.ant-btn-primary {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  box-shadow: none;
+}
+
+/* !important 用于覆盖 Ant Design CSS-in-JS 的动态样式，
+   因 antd 生成的选择器含 :not(:disabled) 特异性更高 */
+.ant-btn-primary:not(:disabled):hover {
+  background: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+}
+
+.ant-btn-primary:not(:disabled):active {
+  background: var(--primary-active) !important;
+  border-color: var(--primary-active) !important;
+}
+
+.ant-btn-default:not(:disabled):hover {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.ant-btn-text:not(:disabled):hover {
+  color: var(--primary-color) !important;
+  background: var(--primary-bg) !important;
+}
+
+/* ---- Input ---- */
+.ant-input {
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-md);
+}
+
+.ant-input:hover {
+  border-color: var(--primary-color);
+}
+
+.ant-input:focus,
+.ant-input-focused {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-bg);
+}
+
+.ant-input-search .ant-input:hover {
+  border-color: var(--primary-color);
+}
+
+.ant-input-search .ant-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-bg);
+}
+
+.ant-input-search .ant-input-search-button {
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.ant-input-search .ant-input-search-button:hover {
+  background: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+}
+
+/* ---- Modal ---- */
+.ant-modal-mask {
+  background: var(--bg-mask) !important;
+}
+
+.ant-modal-content {
+  background: var(--bg-primary);
+  border: none;
+  box-shadow: var(--shadow-modal);
+  border-radius: var(--radius-lg);
+  padding: 0;
+  overflow: hidden;
+}
+
+.ant-modal-header {
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-secondary);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 16px 24px;
+  margin: 0;
+}
+
+.ant-modal-header .ant-modal-title {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+}
+
+.ant-modal-body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  padding: 20px 24px;
+}
+
+.ant-modal-footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-secondary);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: 12px 24px;
+  margin: 0;
+}
+
+.ant-modal-close {
+  color: var(--text-tertiary);
+  top: 12px;
+  right: 16px;
+}
+
+.ant-modal-close:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+  border-radius: var(--radius-sm);
+}
+
+/* ---- Tabs ---- */
+.ant-tabs-tab {
+  font-size: var(--font-size-base);
+  transition: color var(--duration-fast);
+}
+
+.ant-tabs-tab:hover {
+  color: var(--primary-hover);
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.ant-tabs-ink-bar {
+  background: var(--primary-color);
+}
+
+.ant-tabs-nav::before {
+  border-color: var(--border-color);
+}
+
+/* ---- Form ---- */
+.ant-form-item {
+  margin-bottom: 16px;
+}
+
+.ant-form-item-label > label {
+  font-size: var(--font-size-md);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ---- Message / Notification ---- */
+.ant-message-notice-content {
+  border-radius: var(--radius-md);
+}
+
+/* ---- Alert ---- */
+.ant-alert {
+  border-radius: var(--radius-sm);
+}
+
+/* ---- Dropdown / Menu (context menu) ---- */
+.ant-dropdown-menu {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 4px;
+}
+
+.ant-dropdown-menu-item {
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-md);
+}
+
+.ant-dropdown-menu-item:hover {
+  background: var(--bg-hover);
+}
+
+.ant-dropdown-menu-item-danger:hover {
+  background: var(--danger-bg);
+}
+
+/* ---- Tooltip ---- */
+.ant-tooltip-inner {
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+}
+
+/* ---- Avatar ---- */
+.ant-avatar {
+  border: none;
+}
+
+/* ---- Radio (settings) ---- */
+.ant-radio-button-wrapper:hover {
+  color: var(--primary-color);
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  color: var(--text-inverse);
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+  color: var(--text-inverse);
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+/* ---- InputNumber ---- */
+.ant-input-number {
+  border-radius: var(--radius-sm);
+}
+
+.ant-input-number:hover {
+  border-color: var(--primary-color);
+}
+
+.ant-input-number:focus,
+.ant-input-number-focused {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-bg);
+}
+
+/* ---- Select ---- */
+.ant-select:hover .ant-select-selector {
+  border-color: var(--primary-color);
+}
+
+.ant-select-focused .ant-select-selector {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 2px var(--primary-bg) !important;
+}
+
+/* ---- Tree ---- */
+.ant-tree-node-content-wrapper {
+  transition: all var(--duration-fast) !important;
+}
+
+.ant-tree-node-content-wrapper:hover {
+  background: var(--bg-hover) !important;
+}
+
+.ant-tree-node-content-wrapper.ant-tree-node-selected {
+  background: var(--bg-active) !important;
+}
+
+.ant-tree-switcher {
+  color: var(--text-tertiary);
+}
+
+.ant-tree-switcher:hover {
+  color: var(--text-primary);
+}
+
+/* ---- Modal body internal inputs ---- */
+.ant-modal .ant-input {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.ant-modal .ant-input:hover {
+  border-color: var(--primary-color);
+}
+
+.ant-modal .ant-input:focus,
+.ant-modal .ant-input-focused {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-bg);
+}
+
+.ant-modal .ant-input::placeholder {
+  color: var(--text-quaternary);
+}
