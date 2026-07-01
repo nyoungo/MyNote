@@ -6,7 +6,7 @@ import axios, { type AxiosInstance } from 'axios'
  */
 
 // 服务端基础地址（开发环境）
-export const API_BASE = 'https://note.068800.xyz'
+export const API_BASE = 'http://localhost:8082'
 
 const http: AxiosInstance = axios.create({
   baseURL: API_BASE,
