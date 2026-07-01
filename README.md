@@ -8,8 +8,8 @@
 
 ## 截图
 
-![img.png](img.png)
-![img_2.png](img_2.png)
+![img.png](https://github.com/nyoungo/MyNote/blob/main/img.png?raw=true)
+![img_2.png](https://github.com/nyoungo/MyNote/blob/main/img_2.png?raw=true)
 
 ---
 
